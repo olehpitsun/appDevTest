@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/director','DirectorController@index')->middleware('director') ;
+Route::get('/allpersonal','DirectorController@showPersonal')->middleware('director') ;
 
 
 /*
