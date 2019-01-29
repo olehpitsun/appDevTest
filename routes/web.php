@@ -26,7 +26,9 @@ Route::get('/director','DirectorController@index')->middleware('director') ;
 Route::get('/director', function(){
     echo "Hello Admin";
 })->middleware('auth','director');*/
-Route::get('/personal','PersonalController@index')->middleware('personal') ;
+Route::get('/personal','PersonalController@index')->middleware('personal');
+Route::get('/personal/create', 'PersonalController@create')->middleware('personal');
+Route::post('/personal', 'PersonalController@store')->middleware('personal');
 
 /*
 Route::get('/personal', function(){
