@@ -23,10 +23,10 @@
                                 {{$user->name}}
                             </td>
                             <td>{{$user->description}}</td>
-
+                            <td><a href="/settings/{{$user->id}}/edit">Редагувати</a></td>
                         </tr>
                     @empty
-                        No data
+                        Немає користувачів
                     @endforelse
 
                     </tbody>

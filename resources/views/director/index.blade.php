@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">111 Dashboard Director</div>
                 <a href="/allpersonal" class="btn btn-info" role="button">Персонал</a>
+                <a href="/addUser" class="btn btn-info" role="button">Додати користувача</a>
                 <a href="/settings" class="btn btn-info" role="button">Налаштування</a>
 
                 <div class="card-body">

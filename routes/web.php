@@ -19,22 +19,24 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/**
+ * Director
+ */
 Route::get('/director','DirectorController@index')->middleware('director') ;
 Route::get('/allpersonal','DirectorController@showPersonal')->middleware('director') ;
 Route::post('/personal/{id}', 'PersonalController@showOnePersonData')->middleware('director');
 Route::get('/settings','DirectorController@settings')->middleware('director') ;
+Route::get('/settings/{id}/edit', 'DirectorController@settingsEdit')->middleware('director');
+Route::put('/settings/{id}', 'DirectorController@update')->middleware('director');
 
+Route::get('/addUser', 'DirectorController@addUser')->middleware('director');
+Route::post('/addUser', 'DirectorController@addUserStore')->middleware('director');
 
-/*
-Route::get('/director', function(){
-    echo "Hello Admin";
-})->middleware('auth','director');*/
+/**
+ * Personal
+ */
 Route::get('/personal','PersonalController@index')->middleware('personal');
 Route::get('/personal/create', 'PersonalController@create')->middleware('personal');
 Route::post('/personal', 'PersonalController@store')->middleware('personal');
 
-/*
-Route::get('/personal', function(){
-    //echo "Hello Agent";
-})->middleware('auth','personal');*/
 
