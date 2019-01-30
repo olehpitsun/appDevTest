@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Payment;
+use Auth;
 
 class PersonalController extends Controller
 {
@@ -24,10 +25,25 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        $payments = Payment::paginate(10)->where('created_at', '>=', date('Y-m-d').' 00:00:00');
+        $payments = Payment::paginate(100)
+            ->where('user_id', '=', Auth::user()->id)
+            ->where('created_at', '>=', date('Y-m-d').' 00:00:00');
 
         return view('personal.index', compact('payments'));
 
+    }
+
+    /**
+     * @param $id - user id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showOnePersonData($id){
+
+        $payments = Payment::paginate(100)
+            ->where('user_id', '=', $id)
+            ->where('created_at', '>=', date('Y-m-d').' 00:00:00');
+
+        return view('personal.index', compact('payments'));
     }
 
     /**

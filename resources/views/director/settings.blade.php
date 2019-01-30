@@ -5,15 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Перегляд персоналу</div>
+                <div class="card-header">Налаштування</div>
 
                 <table class="ui striped table">
                     <thead>
                     <tr>
                         <th>Ім'я</th>
-                        <th>email</th>
-                        <th>К-сть операцій</th>
-                        <th>Загальна сума</th>
+                        <th>Опис</th>
+                        <th></th>
 
                     </tr>
                     </thead>
@@ -22,17 +21,8 @@
                         <tr>
                             <td>
                                 {{$user->name}}
-                                <form action="/personal/{{$user->user_id}}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('POST') }}
-                                    <button class="btn-danger btn-sm">
-                                        {{$user->name}}
-                                    </button>
-                                </form>
                             </td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->total_count}}</td>
-                            <td>{{$user->total_sum}}</td>
+                            <td>{{$user->description}}</td>
 
                         </tr>
                     @empty

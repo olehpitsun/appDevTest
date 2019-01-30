@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/director','DirectorController@index')->middleware('director') ;
 Route::get('/allpersonal','DirectorController@showPersonal')->middleware('director') ;
+Route::post('/personal/{id}', 'PersonalController@showOnePersonData')->middleware('director');
+Route::get('/settings','DirectorController@settings')->middleware('director') ;
 
 
 /*

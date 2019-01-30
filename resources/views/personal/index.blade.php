@@ -6,9 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Персонал</div>
-
-                        <a href="/personal/create" class="btn btn-info" role="button">Додати</a>
-
+                        @if(Auth::user()->role == 'personal')
+                            <a href="/personal/create" class="btn btn-info" role="button">Додати</a>
+                        @endif
                         <h2 style="text-align: center">Список публікацій</h2>
                         <table class="ui striped table">
                             <thead>
