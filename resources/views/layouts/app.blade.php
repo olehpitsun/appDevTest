@@ -15,10 +15,43 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+            $( "#format" ).on( "change", function() {
+                $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
+            });
+        } );
+    </script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>[type="date"] {
+            background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+        }
+        [type="date"]::-webkit-inner-spin-button {
+            display: none;
+        }
+        [type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+        }
+
+
+        input {
+            border: 1px solid #c4c4c4;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 3px 5px;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+            width: 190px;
+        }
+    </style>
+
+
 </head>
 <body>
     <div id="app">

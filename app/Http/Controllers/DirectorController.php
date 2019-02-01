@@ -31,8 +31,12 @@ class DirectorController extends Controller
         return view('director.index');
     }
 
-    public function showPersonal(){
+    public function showPersonal(Request $request){
 
+        $date = date('Y-m-d');
+        if(isset($request->date) && $request->date != null){
+            $date = $request->date;
+        }
 
         $users = \DB::table('payments')
             ->join("users", "payments.user_id", "=", "users.id")
@@ -43,10 +47,9 @@ class DirectorController extends Controller
                 \DB::raw('count(*) total_count'),
                 \DB::raw('sum(total) total_sum')
             )
-            ->where('payments.created_at', '>=', date('Y-m-d').' 00:00:00')
+            ->where('payments.created_at', '>=', $date.' 00:00:00')
             ->groupBy('user_id')
             ->get();
-
 
         return view('director.showPersonal', compact('users'));
 

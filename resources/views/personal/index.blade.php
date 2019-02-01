@@ -18,6 +18,18 @@
 
             <div class="card">
                 <div class="card-header">Персонал</div>
+
+                <form action="/personalDate" method="POST">
+                    {{ csrf_field() }}
+
+                    <div class="form-group">
+                        <label for="date">Дата</label>
+                        <input type="date" name="date" id="date">
+                    </div>
+
+                    <input type="submit" class="btn btn-success">
+                </form>
+
                         @if(Auth::user()->role == 'personal')
                             <a href="/personal/create" class="btn btn-info" role="button">Додати</a>
                         @endif

@@ -27,6 +27,7 @@ Route::get('/allpersonal','DirectorController@showPersonal')->middleware('direct
 Route::post('/user/{id}/', 'DirectorController@showOnePersonData')->middleware('director');
 Route::get('/addUser', 'DirectorController@addUser')->middleware('director');
 Route::post('/addUser', 'DirectorController@addUserStore')->middleware('director');
+Route::post('/chooseDate', 'DirectorController@showPersonal')->middleware('director');
 
 /**
  * Settings (director)
@@ -38,9 +39,10 @@ Route::put('/settings/{id}', 'SettingsController@update')->middleware('director'
 /**
  * Personal
  */
-Route::get('/personal','PersonalController@index')->middleware('personal');
+Route::get('/personalDate','PersonalController@index')->middleware('personal');
 Route::get('/personal/create', 'PersonalController@create')->middleware('personal');
 Route::post('/personal', 'PersonalController@store')->middleware('personal');
+Route::post('/personalDate', 'PersonalController@index')->middleware('personal');
 
 Route::get('personal','PersonalController@index')->name('personal')->middleware('personal');
 

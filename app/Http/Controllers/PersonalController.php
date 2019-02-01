@@ -23,11 +23,17 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $date = date('Y-m-d');
+        if(isset($request->date) && $request->date != null){
+            $date = $request->date;
+        }
+
         $payments = Payment::latest('created_at')
             ->where('user_id', '=', Auth::user()->id)
-            ->where('created_at', '>=', date('Y-m-d').' 00:00:00')
+            ->where('created_at', '>=', $date.' 00:00:00')
             ->paginate(2);
 
         return view('personal.index', compact('payments'));
@@ -68,6 +74,6 @@ class PersonalController extends Controller
             'currency' => $request->currency,
             'description' => $request->description,
         ]);
-        return redirect('/personal');
+        return redirect('/personalDate');
     }
 }

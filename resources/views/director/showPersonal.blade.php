@@ -7,6 +7,23 @@
             <div class="card">
                 <div class="card-header">Перегляд персоналу</div>
 
+                <div class="panel-body">
+
+
+
+
+                    <form action="/chooseDate" method="POST">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label for="date">Дата</label>
+                            <input type="date" name="date" id="date">
+                        </div>
+
+                        <input type="submit" class="btn btn-success">
+                    </form>
+                </div>
+
                 <table class="ui striped table">
                     <thead>
                     <tr>
