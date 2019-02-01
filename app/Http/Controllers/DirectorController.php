@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Payment;
+use App\Http\Controllers\MailController;
 
 class DirectorController extends Controller
 {
@@ -32,6 +33,7 @@ class DirectorController extends Controller
 
     public function showPersonal(){
 
+
         $users = \DB::table('payments')
             ->join("users", "payments.user_id", "=", "users.id")
             ->select(
@@ -45,35 +47,23 @@ class DirectorController extends Controller
             ->groupBy('user_id')
             ->get();
 
+
         return view('director.showPersonal', compact('users'));
 
     }
 
-    public function settings(){
-
-        $users = User::paginate(100)->where('role', '=', 'personal');
-        return view('director.settings', compact('users'));
-    }
-
-    public function settingsEdit($id){
-
-        $user = User::findOrFail($id);
-        return view('director.personalEdit', compact('user'));
-    }
-
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id - user id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function update(Request $request, $id)
-    {
-        $news = User::findOrFail($id);
-        $news->update($request->all());
+    public function showOnePersonData($id){
 
-        return redirect('/settings');
+        $payments = Payment::latest('created_at')
+            ->where('user_id', '=', $id)
+            ->where('created_at', '>=', date('Y-m-d').' 00:00:00')
+            ->paginate(2);
+
+        return view('director.showOnePerson', compact('payments'));
     }
 
     public function addUser(){
@@ -82,15 +72,8 @@ class DirectorController extends Controller
 
     public function addUserStore(Request $request){
 
-        /*
-        Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);*/
-
         $this->validate($request, [
-            'name' => 'required|string||min:3|max:20',
+            'name' => 'required|string||min:3|max:30',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:6|max:500',
         ]);
@@ -102,6 +85,10 @@ class DirectorController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'personal'
         ]);
+
+        $ml = new MailController();
+        $ml->send($request->email, $request->name, $request->email, $request->password);
+
         return redirect('/director');
 
         //dd(Hash::make($request->getPassword()));

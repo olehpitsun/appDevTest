@@ -22,7 +22,7 @@
                         <tr>
                             <td>
                                 {{$user->name}}
-                                <form action="/personal/{{$user->user_id}}" method="POST">
+                                <form action="/user/{{$user->user_id}}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('POST') }}
                                     <button class="btn-danger btn-sm">

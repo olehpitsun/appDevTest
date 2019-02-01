@@ -25,26 +25,16 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        $payments = Payment::paginate(100)
+        $payments = Payment::latest('created_at')
             ->where('user_id', '=', Auth::user()->id)
-            ->where('created_at', '>=', date('Y-m-d').' 00:00:00');
+            ->where('created_at', '>=', date('Y-m-d').' 00:00:00')
+            ->paginate(2);
 
         return view('personal.index', compact('payments'));
 
     }
 
-    /**
-     * @param $id - user id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showOnePersonData($id){
 
-        $payments = Payment::paginate(100)
-            ->where('user_id', '=', $id)
-            ->where('created_at', '>=', date('Y-m-d').' 00:00:00');
-
-        return view('personal.index', compact('payments'));
-    }
 
     /**
      * Show the form for creating a new resource.

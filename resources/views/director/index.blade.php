@@ -9,16 +9,12 @@
                 <a href="/allpersonal" class="btn btn-info" role="button">Персонал</a>
                 <a href="/addUser" class="btn btn-info" role="button">Додати користувача</a>
                 <a href="/settings" class="btn btn-info" role="button">Налаштування</a>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+               document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
             </div>
         </div>
     </div>

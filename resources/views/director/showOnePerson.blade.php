@@ -4,23 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="/personal">Переглянути мої розрахунки</a>
-            <a href="/personal/create">Провести розрахунок</a>
-            <a class="dropdown-item" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
 
             <div class="card">
                 <div class="card-header">Персонал</div>
-                        @if(Auth::user()->role == 'personal')
-                            <a href="/personal/create" class="btn btn-info" role="button">Додати</a>
-                        @endif
+
                         <h2 style="text-align: center">Список розрахунків</h2>
                         <table class="ui striped table">
                             <thead>
@@ -48,7 +35,6 @@
                             @endforelse
                             </tbody>
                         </table>
-                <?php echo $payments->render(); ?>
 
             </div>
         </div>

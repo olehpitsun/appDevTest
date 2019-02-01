@@ -18,19 +18,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('mail/send', 'MailController@send');
 /**
  * Director
  */
 Route::get('/director','DirectorController@index')->middleware('director') ;
 Route::get('/allpersonal','DirectorController@showPersonal')->middleware('director') ;
-Route::post('/personal/{id}', 'PersonalController@showOnePersonData')->middleware('director');
-Route::get('/settings','DirectorController@settings')->middleware('director') ;
-Route::get('/settings/{id}/edit', 'DirectorController@settingsEdit')->middleware('director');
-Route::put('/settings/{id}', 'DirectorController@update')->middleware('director');
-
+Route::post('/user/{id}/', 'DirectorController@showOnePersonData')->middleware('director');
 Route::get('/addUser', 'DirectorController@addUser')->middleware('director');
 Route::post('/addUser', 'DirectorController@addUserStore')->middleware('director');
+
+/**
+ * Settings (director)
+ */
+Route::get('/settings','SettingsController@index')->middleware('director') ;
+Route::get('/settings/{id}/edit', 'SettingsController@settingsEdit')->middleware('director');
+Route::put('/settings/{id}', 'SettingsController@update')->middleware('director');
 
 /**
  * Personal
@@ -39,4 +42,5 @@ Route::get('/personal','PersonalController@index')->middleware('personal');
 Route::get('/personal/create', 'PersonalController@create')->middleware('personal');
 Route::post('/personal', 'PersonalController@store')->middleware('personal');
 
+Route::get('personal','PersonalController@index')->name('personal')->middleware('personal');
 

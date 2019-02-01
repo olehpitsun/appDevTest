@@ -61,6 +61,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('CompanyName') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="CompanyName" type="text" class="form-control{{ $errors->has('CompanyName') ? ' is-invalid' : '' }}" name="CompanyName" value="{{ old('CompanyName') }}" required autofocus>
+
+                                @if ($errors->has('CompanyName'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('CompanyName') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('CompanyDescription') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="CompanyDescription" type="text" class="form-control{{ $errors->has('CompanyDescription') ? ' is-invalid' : '' }}" name="CompanyDescription" value="{{ old('CompanyDescription') }}" required autofocus>
+
+                                @if ($errors->has('CompanyDescription'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('CompanyDescription') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
