@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
+    <ol class="breadcrumb">
+        <li><a href="/personal"><i class="fa fa-dashboard"></i> Переглянути мої розрахунки</a></li>
+    </ol>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1>Новий рахунок</h1>
@@ -10,11 +13,16 @@
                     {{ csrf_field() }}
 
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                    <div class="form-group">
-                        <label for="content">Тип</label><br>
-                        <input type="radio" name="type" value="card" >Картка <br>
-                        <input type="radio" name="type" value="cash" >Готівкою<br>
 
+
+                    <div class="form-group">
+                            <label for="content">Тип</label><br>
+                            <div class="radio">
+                                    <input type="radio" name="type" value="card" >Картка
+                            </div>
+                            <div class="radio">
+                                    <input type="radio" name="type" value="cash" >Готівкою
+                            </div>
                     </div>
 
                     <div class="form-group">
