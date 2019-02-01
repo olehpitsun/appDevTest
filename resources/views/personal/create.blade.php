@@ -9,7 +9,7 @@
                 <h1>Новий рахунок</h1>
             </div>
             <div class="panel-body">
-                <form action="/personal" method="POST">
+                <form action="/personal" method="POST" >
                     {{ csrf_field() }}
 
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">

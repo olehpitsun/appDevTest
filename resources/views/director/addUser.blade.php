@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1>Create participant</h1>
+                <h2>Створити нового користувача</h2>
             </div>
             <div class="panel-body">
                 <form action="/addUser" method="POST">

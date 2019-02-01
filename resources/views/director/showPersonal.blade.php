@@ -3,14 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Перегляд персоналу</div>
+        <div class="col-md-12">
+            <h2 class="card">
+                <h2>Перегляд персоналу</h2>
 
                 <div class="panel-body">
-
-
-
 
                     <form action="/chooseDate" method="POST">
                         {{ csrf_field() }}
@@ -24,7 +21,7 @@
                     </form>
                 </div>
 
-                <table class="ui striped table">
+                <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>Ім'я</th>
