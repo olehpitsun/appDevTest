@@ -46,3 +46,5 @@ Route::post('/personalDate', 'PersonalController@index')->middleware('personal')
 
 Route::get('personal','PersonalController@index')->name('personal')->middleware('personal');
 
+Route::get('/cookie/set','CookieController@setCookie');
+Route::get('/cookie/get','CookieController@getCookie');

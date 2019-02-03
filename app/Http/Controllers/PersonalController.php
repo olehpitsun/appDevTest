@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Payment;
 use Auth;
+use Cookie;
+use Closure;
 
 class PersonalController extends Controller
 {
@@ -16,6 +18,7 @@ class PersonalController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     /**
@@ -26,15 +29,18 @@ class PersonalController extends Controller
     public function index(Request $request)
     {
 
-        $date = date('Y-m-d');
+        if( !$request->session()->get('date')){
+            $request->session()->put('date', date('Y-m-d'));
+        }
+
         if(isset($request->date) && $request->date != null){
-            $date = $request->date;
+            $request->session()->put('date', $request->date);
         }
 
         $payments = Payment::latest('created_at')
             ->where('user_id', '=', Auth::user()->id)
-            ->where('created_at', '>=', $date.' 00:00:00')
-            ->paginate(2);
+            ->where('created_at', '>=', $request->session()->get('date') .' 00:00:00')
+            ->paginate(5);
 
         return view('personal.index', compact('payments'));
 

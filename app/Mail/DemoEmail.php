@@ -29,7 +29,7 @@ class DemoEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('pichyn7@gmail.com')
+        return $this->from('a4acafa687-00a95c@inbox.mailtrap.io')
             ->view('mails.demo')
             ->text('mails.demo_plain')
 

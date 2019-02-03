@@ -18,8 +18,12 @@
             </form>
         </div>
     </div>
-
-    <h2 style="text-align: center">Список розрахунків</h2>
+    <div class="col-md-6">
+        <div style="text-align: center">
+            <h2 >Список розрахунків </h2>
+            <h4>починаючи з <b>{{ Session::get('date') }}</b></h4>
+        </div>
+    </div>
         <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
