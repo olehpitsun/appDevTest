@@ -7,7 +7,9 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Payment;
-use App\Http\Controllers\MailController;
+use App\Company;
+use Auth;
+use Mockery\Exception;
 
 class DirectorController extends Controller
 {
@@ -28,7 +30,10 @@ class DirectorController extends Controller
      */
     public function index()
     {
-        return view('director.index');
+        $company = Company::all()
+            ->where('id', '=',  Auth::user()->id);
+
+        return view('director.index', compact('company'));
     }
 
     public function showPersonal(Request $request){
@@ -89,8 +94,11 @@ class DirectorController extends Controller
             'role' => 'personal'
         ]);
 
-        $ml = new MailController();
-        $ml->send($request->email, $request->name, $request->email, $request->password);
+        try{
+            $ml = new MailController();
+            $ml->send($request->email, $request->name, $request->email, $request->password);
+        }catch (Exception $exception){}
+
 
         return redirect('/director');
 

@@ -47,6 +47,7 @@
         </div>
     </nav>
 </header>
+
 @if (Auth::user()->role == "personal")
     @include('personal.sidebar')
 @elseif(Auth::user()->role == "director")

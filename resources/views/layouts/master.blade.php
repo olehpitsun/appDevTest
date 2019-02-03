@@ -78,9 +78,6 @@
         <strong>Copyright &copy; 2019 </strong>
     </footer>
 
-
-    <!-- ./wrapper -->
-
     <!-- jQuery 3 -->
     <script src="AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

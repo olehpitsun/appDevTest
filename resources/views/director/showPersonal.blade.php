@@ -35,11 +35,10 @@
                     @forelse($users as $user)
                         <tr>
                             <td>
-                                {{$user->name}}
                                 <form action="/user/{{$user->user_id}}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('POST') }}
-                                    <button class="btn-danger btn-sm">
+                                    <button class="btn btn-block btn-default btn-sm">
                                         {{$user->name}}
                                     </button>
                                 </form>
