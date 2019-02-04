@@ -69,7 +69,7 @@ class DirectorController extends Controller
         $payments = Payment::latest('created_at')
             ->where('user_id', '=', $id)
             ->where('created_at', '>=', date('Y-m-d').' 00:00:00')
-            ->paginate(2);
+            ->paginate(100);
 
         return view('director.showOnePerson', compact('payments'));
     }
